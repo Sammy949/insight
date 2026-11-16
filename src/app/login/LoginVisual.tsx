@@ -1,37 +1,9 @@
-'use client';
-import { type PointerEvent, useRef } from 'react';
 import styles from './LoginShell.module.css';
 
-/**
- * The framed landscape with the dashboard resting inside it. Decorative only.
- * The pointer nudges the photo and the screenshot in opposite directions for a
- * little depth; with no pointer, no JS, or reduced motion it simply sits still.
- */
+/** The framed landscape with the dashboard resting inside it. Decorative only. */
 export function LoginVisual() {
-  const ref = useRef<HTMLDivElement>(null);
-
-  const move = (e: PointerEvent<HTMLDivElement>) => {
-    if (e.pointerType !== 'mouse' || !ref.current) return;
-    const rect = ref.current.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
-    ref.current.style.setProperty('--px', (x * 2).toFixed(3));
-    ref.current.style.setProperty('--py', (y * 2).toFixed(3));
-  };
-
-  const reset = () => {
-    ref.current?.style.setProperty('--px', '0');
-    ref.current?.style.setProperty('--py', '0');
-  };
-
   return (
-    <div
-      ref={ref}
-      className={styles.frame}
-      aria-hidden="true"
-      onPointerMove={move}
-      onPointerLeave={reset}
-    >
+    <div className={styles.frame} aria-hidden="true">
       <div className={styles.photo} />
       <div className={styles.shot}>
         <img
