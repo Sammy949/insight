@@ -1,17 +1,17 @@
 import type { SVGProps } from 'react';
 
+// Insight mark. Amber by default; pass `fill` to recolour (e.g. currentColor).
 const SvgLogo = (props: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={20}
     height={20}
-    fill="currentColor"
-    stroke="currentColor"
-    viewBox="0 0 428 389.11"
+    fill="#f59e0b"
+    viewBox="0 0 32 48"
     {...props}
   >
-    <circle cx={214.15} cy={181} r={171} fill="none" strokeMiterlimit={10} strokeWidth={20} />
-    <path d="M413 134.11H15.29a15 15 0 0 0-15 15v15.3C.12 168 0 171.52 0 175.11c0 118.19 95.81 214 214 214 116.4 0 211.1-92.94 213.93-208.67 0-.44.07-.88.07-1.33v-30a15 15 0 0 0-15-15Z" />
+    <path d="m21.3333 18.6667v-10.6667h-21.3333v10.6667z" />
+    <path d="m21.3329 29.3332c-5.891 0-10.6667 4.7757-10.6667 10.6667l-10.66489681.0004v-.2753c.14659281-11.6097 9.56705681-20.9847 21.19429681-21.058l10.8044.0005v21.3333h-10.6667z" />
   </svg>
 );
 export default SvgLogo;

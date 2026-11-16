@@ -7,7 +7,6 @@ import {
   FormField,
   FormSubmitButton,
   Heading,
-  Icon,
   Text,
   TextField,
 } from '@umami/react-zen';
@@ -15,7 +14,6 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { OtpInput } from '@/components/common/OtpInput';
 import { useMessages, useTwoFactorVerifyMutation } from '@/components/hooks';
-import { Logo } from '@/components/svg';
 import { setClientAuthToken } from '@/lib/client';
 import { consumeReturnUrl } from '@/lib/return-url';
 import { setUser } from '@/store/app';
@@ -89,12 +87,8 @@ export function LoginTwoFactorPage() {
     : null;
 
   return (
-    <Column justifyContent="center" alignItems="center" gap="6">
-      <Icon size="lg">
-        <Logo />
-      </Icon>
-      <Heading>umami</Heading>
-      <Column gap="4" style={{ minWidth: 300 }}>
+    <Column gap="6">
+      <Column gap="4">
         <Heading size="xl">{t(labels.twoFactorLogin)}</Heading>
         <Text>{t(messages.twoFactorLoginDescription)}</Text>
 
@@ -102,12 +96,7 @@ export function LoginTwoFactorPage() {
           <Text style={{ color: 'var(--zen-status-error)' }}>{lockMessage}</Text>
         )}
 
-        <Form
-          onSubmit={handleSubmit}
-          error={error ?? undefined}
-          defaultValues={{ backupCode: '' }}
-          style={{ minWidth: 300 }}
-        >
+        <Form onSubmit={handleSubmit} error={error ?? undefined} defaultValues={{ backupCode: '' }}>
           {!useBackup ? (
             <Column gap="2">
               <Text weight="bold">{t(labels.twoFactorEnterCode)}</Text>

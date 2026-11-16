@@ -9,7 +9,7 @@ const TEXT_SIZE = { sm: 'sm', md: 'base', lg: 'lg' } as const;
 export function ShareBranding({ size = 'md' }: { size?: 'sm' | 'md' | 'lg' }) {
   const share = useShare();
   const logoDomain = share?.whiteLabel?.domainName || 'https://umami.is';
-  const logoName = share?.whiteLabel?.displayName || 'umami';
+  const logoName = share?.whiteLabel?.displayName || 'insight';
   const logoImage = share?.whiteLabel?.logoUrl;
   const height = LOGO_SIZE[size];
 

@@ -1,0 +1,185 @@
+/*
+ * Login shell: form on the left, a framed landscape on the right with the real
+ * dashboard resting inside it. Everything is visible without JS; the pointer
+ * parallax only nudges elements that are already on screen.
+ */
+
+.shell {
+  /* Amber-brown accent for the sign-in button, tonal rather than poster-bright. */
+  --zen-primary: oklch(52% 0.12 62);
+  --zen-primary-fg: oklch(98.5% 0.01 80);
+
+  display: grid;
+  grid-template-columns: minmax(360px, 1fr) minmax(0, 1.35fr);
+  min-height: 100dvh;
+  background-color: var(--zen-surface);
+}
+
+:global(.dark) .shell,
+:global([data-theme="dark"]) .shell {
+  --zen-primary: oklch(74% 0.14 68);
+  --zen-primary-fg: oklch(20% 0.03 60);
+}
+
+.side {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  padding: 40px clamp(24px, 6vw, 72px);
+}
+
+.content {
+  align-self: center;
+  justify-self: center;
+  width: 100%;
+  max-width: 340px;
+}
+
+.footnote {
+  justify-self: center;
+  width: 100%;
+  max-width: 340px;
+  color: var(--zen-fg-muted);
+  font-size: 0.75rem;
+}
+
+.footnote a {
+  color: inherit;
+}
+
+.footnote a:hover {
+  color: var(--zen-fg);
+}
+
+/* Brand lockup: the bare mark beside the wordmark, no tile. */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+.brand svg {
+  width: auto;
+  height: 34px;
+  flex-shrink: 0;
+}
+
+.wordmark {
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  color: var(--zen-fg);
+}
+
+/* ---- The framed landscape ---- */
+
+.frame {
+  --px: 0;
+  --py: 0;
+
+  position: relative;
+  margin: 12px 12px 12px 0;
+  border-radius: 20px;
+  overflow: hidden;
+  isolation: isolate;
+  background-color: #2a1a10;
+}
+
+.photo {
+  position: absolute;
+  inset: -16px;
+  background-image: url("/images/login/dune.webp");
+  background-size: cover;
+  background-position: 50% 62%;
+  transform: translate3d(calc(var(--px) * -6px), calc(var(--py) * -4px), 0);
+  transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/*
+ * The dashboard floats in the sky above the dune, running off the right edge
+ * only, so the lit ridge stays visible underneath it.
+ */
+.shot {
+  position: absolute;
+  left: 11%;
+  top: 12%;
+  width: 112%;
+  border-radius: 12px 0 0 12px;
+  overflow: hidden;
+  /* One light source from the top left: tight, warm, cast down and to the right. */
+  box-shadow:
+    0 0 0 1px rgb(255 236 210 / 0.14),
+    2px 3px 6px rgb(30 14 4 / 0.3),
+    10px 22px 40px -12px rgb(30 14 4 / 0.6);
+  transform: translate3d(calc(var(--px) * 10px), calc(var(--py) * 8px), 0);
+  transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.shotDark {
+  display: none !important;
+}
+
+:global(.dark) .shotLight,
+:global([data-theme="dark"]) .shotLight {
+  display: none !important;
+}
+
+:global(.dark) .shotDark,
+:global([data-theme="dark"]) .shotDark {
+  display: block !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photo,
+  .shot {
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Narrow screens: the form owns the screen, the landscape becomes a band on top. */
+@media (max-width: 900px) {
+  .shell {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+  }
+
+  .frame {
+    order: -1;
+    height: 140px;
+    margin: 12px 12px 0;
+  }
+
+  .photo {
+    background-position: 50% 78%;
+  }
+
+  /* Too small to read here; the landscape alone carries the band. */
+  .shot {
+    display: none;
+  }
+
+  .side {
+    padding: 32px 24px 24px;
+  }
+
+  .content {
+    align-self: start;
+    padding-top: 8px;
+  }
+
+  .brand {
+    margin-bottom: 28px;
+  }
+
+  .footnote {
+    margin-top: 32px;
+  }
+}
