@@ -4,20 +4,10 @@
  */
 
 .shell {
-  /* Amber-brown accent for the sign-in button, tonal rather than poster-bright. */
-  --zen-primary: oklch(52% 0.12 62);
-  --zen-primary-fg: oklch(98.5% 0.01 80);
-
   display: grid;
   grid-template-columns: minmax(360px, 1fr) minmax(0, 1.35fr);
   min-height: 100dvh;
   background-color: var(--zen-surface);
-}
-
-:global(.dark) .shell,
-:global([data-theme="dark"]) .shell {
-  --zen-primary: oklch(74% 0.14 68);
-  --zen-primary-fg: oklch(20% 0.03 60);
 }
 
 .side {

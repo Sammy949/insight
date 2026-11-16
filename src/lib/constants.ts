@@ -241,26 +241,28 @@ export const ROLE_PERMISSIONS = {
 
 export const THEME_COLORS = {
   light: {
-    primary: '#2680eb',
+    primary: '#f59e0b',
     text: '#838383',
     line: '#d9d9d9',
     fill: '#f9f9f9',
   },
   dark: {
-    primary: '#2680eb',
+    primary: '#f59e0b',
     text: '#7b7b7b',
     line: '#3a3a3a',
     fill: '#191919',
   },
 } as const;
 
+// First series is the Insight amber. Blue moves to the old orange slot, and the
+// yellow that sat too close to amber becomes teal, so neighbours stay distinct.
 export const CHART_COLORS = [
-  '#2680eb',
+  '#f59e0b',
   '#9256d9',
   '#44b556',
-  '#e68619',
+  '#2680eb',
   '#e34850',
-  '#f7bd12',
+  '#14b8a6',
   '#01bad7',
   '#6734bc',
   '#89c541',

@@ -2,13 +2,16 @@
   --zen-font-family: var(--font-inter), sans-serif;
 }
 
-/* Preserve the brand accent when Zen applies its light or dark theme tokens. */
+/*
+ * Insight accent: the logo's amber (#f59e0b), in both themes. White text on it
+ * fails contrast, so text on primary fills is a warm near-black.
+ */
 :root,
 [data-theme="light"],
 [data-theme="dark"],
 .dark {
-  --zen-primary: oklch(62.3% 0.214 259.815);
-  --zen-primary-fg: oklch(98.5% 0 0);
+  --zen-primary: #f59e0b;
+  --zen-primary-fg: oklch(21% 0.03 60);
 }
 
 /* Zen's rem-based typography and spacing assume the browser's default root size. */
